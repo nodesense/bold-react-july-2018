@@ -6,7 +6,13 @@ import Footer from "./components/Footer";
 import Home from "./components/Home";
 import About from "./components/About";
 
+import NotFound from "./components/NotFound";
+
 import Cart from './cart/components/Cart';
+
+import {BrowserRouter as Router, 
+        Switch,
+        Route } from 'react-router-dom';
 
 import "./App.css";
 
@@ -34,19 +40,36 @@ export default class App extends React.Component {
         // JSX => JavaScript + XML
         //JSX shall convert to JavaScript at build time
         return (
+            <Router>
             <div>
                 {/* Share data with child  using props */}
                 <Header appTitle={this.state.appTitle} />
 
-                <Cart />
+
+                <Switch>
+                    <Route path="/" exact component={Home} />
+                    <Route path="/cart" component={Cart} />
+                    <Route path="/about" component={About} />
+                    <Route path="*" component={NotFound} />
+                </Switch>
+
+                {/* <Cart />
                 
                 <Home startValue={100} />
 
-                <About />
+                <About /> */}
+
 
                 <Footer appTitle={this.state.appTitle} 
-                        year={this.state.year} />
+                        year={this.state.year} >
+
+                    {/* content view */}
+                    <p>Contact time: 8:00 AM to 5:00 PM</p>
+                    <p>India Contact time: 9:00 to 6:00 PM</p>
+
+                </Footer>
             </div>
+            </Router>
         )
 
         // return React.createElement("h1", 

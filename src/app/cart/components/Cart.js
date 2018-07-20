@@ -16,7 +16,8 @@ export default class Cart extends Component {
             	   ],
             amount: 0, // sum of all items price * qty
             count: 0, // sum of all items qty
-            flag: true
+            flag: true,
+            searchText: ''
         }
     }
     
@@ -66,7 +67,7 @@ export default class Cart extends Component {
         console.log('update item ', id, qty)
 
         // clone array
-        let items = this.state.items.map (item => {
+        const items = this.state.items.map (item => {
             if (item.id === id) {
                 //BAD. mutating object
                 //item.qty = qty;
@@ -122,6 +123,11 @@ export default class Cart extends Component {
         this.recalculate(this.state.items);
     }
     
+    onSearchText = (e) => {
+        this.setState({
+            searchText: e.target.value
+        })
+    }
     
     render() {
         console.log("Cart render")
@@ -129,10 +135,14 @@ export default class Cart extends Component {
             <div> 
             <h2>Cart</h2>
 
+            <label>Search products</label>
+            <input value={this.state.searchText} 
+                    onChange={this.onSearchText}
+            />
+
             <button onClick={this.addItem}>
                 Add Item
             </button>
-
 
             <button onClick={this.empty}>
                 Empty
@@ -144,14 +154,16 @@ export default class Cart extends Component {
             
 
             <CartList  items={this.state.items}  
-                       removeItem={this.removeItem}
+                       removeItem={(id) => this.removeItem(id)}
                        updateItem={this.updateItem}
                         
             />
 
-            <CartSummary amount={this.state.amount}
-                         count = {this.state.count}
-            />
+            { this.state.count % 2 == 1 && 
+                <CartSummary amount={this.state.amount}
+                            count = {this.state.count}
+                />
+            }
 
             </div>
         )

@@ -13,6 +13,8 @@ export default class CartSummary extends PureComponent {
             discount: 0,
             grandTotal: 0
         }
+        
+        console.log("CartSummary Created")
     }
  
     //TODO: componentWillMount
@@ -21,6 +23,10 @@ export default class CartSummary extends PureComponent {
         this.recalculate(this.props)
     }
 
+
+    componentWillUnmount() {
+        console.log("Summary unmount")
+    }
     //TODO: componentWillReceiveProps, recalculate 
  
     //TODO: shouldComponentUpdate

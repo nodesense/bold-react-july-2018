@@ -1,6 +1,6 @@
 // CartList.js
 
-import React, {Component} from "react";
+import React, {PureComponent, Component} from "react";
 import PropTypes from "prop-types";
 
 import CartItem from "./CartItem";
@@ -28,7 +28,7 @@ export default class CartList extends Component {
         console.log("CartList Render");
 
         //deconstruct
-        let {items} = this.props;
+        const {items} = this.props;
 
         if (items.length == 0) {
             return (

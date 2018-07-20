@@ -1,5 +1,5 @@
 // CartItem.js
-import React, {Component} from "react";
+import React, {PureComponent, Component} from "react";
 import PropTypes from "prop-types";
 
 export default class CartItem extends Component {
@@ -36,6 +36,7 @@ export default class CartItem extends Component {
 
     componentDidMount() {
         console.log("CartItem mounted");
+        this.inputElement.focus();
     }
 
     componentWillUnmount() {
@@ -56,6 +57,7 @@ export default class CartItem extends Component {
                             value={this.state.qty}
                             type="number"
                             onChange={this.onChangeQty}
+                            ref = { element => this.inputElement = element }
                              
                      />
                 </td>
