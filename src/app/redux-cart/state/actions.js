@@ -54,12 +54,16 @@ export const fetchProducts = () => {
         // here we go with ajax call
         // thunk shall call
         console.log("called by thunk")
+
+        dispatch(loading(true));
+
         window.fetch("http://localhost:7070/api/products")
         .then (response => response.json() )
         .then (products => {
             console.log("Got products ", products);
             let action = initProducts(products)
             dispatch(action)
+            dispatch(loading(false));
         })
     }
 
