@@ -10,6 +10,8 @@ import NotFound from "./components/NotFound";
 
 import Cart from './cart/components/Cart';
 
+import ReduxCart from './redux-cart/containers/ReduxCart';
+
 import {BrowserRouter as Router, 
         Switch,
         Route } from 'react-router-dom';
@@ -49,6 +51,7 @@ export default class App extends React.Component {
                 <Switch>
                     <Route path="/" exact component={Home} />
                     <Route path="/cart" component={Cart} />
+                    <Route path="/redux-cart" component={ReduxCart} />
                     <Route path="/about" component={About} />
                     <Route path="*" component={NotFound} />
                 </Switch>
