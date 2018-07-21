@@ -2,13 +2,18 @@
 
 import {connect} from 'react-redux';
 
+// bind dispatch and action creatos
+import {bindActionCreators} from 'redux';
+
 import ReduxCart from '../components/ReduxCart';
 
-import {addItem} from '../state/actions';
+import {addItem, empty} from '../state/actions';
 
 // state = store.getState()
 // on every subscribe, end of dispatch
+// on first time
 function mapStateToProps(state) {
+    console.log("Redux cart map state to props", state)
     return {
         //prop Name: value from state
         cartLength: state.items.length
@@ -18,6 +23,7 @@ function mapStateToProps(state) {
 //dispatch == store.dispatch
 // called only once per container component creation
 function mapDispatchToProps(dispatch) {
+    console.log("Redux cart map dispatch to props")
     return {
         // propName: function(){}
         addItem: function() {
@@ -30,8 +36,21 @@ function mapDispatchToProps(dispatch) {
             }
 
             const action = addItem(item);
+
             dispatch(action);
-        }
+        },
+
+        // empty: function() {
+        //     //call action creator
+        //     const action = empty()
+        //     // dispatch to store
+        //     dispatch(action)
+        // }
+
+               // returns a wrapper function,
+               // that calls action creator method
+               // and dispatch
+        empty: bindActionCreators(empty, dispatch)
     }
 }
 
