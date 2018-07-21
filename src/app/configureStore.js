@@ -4,6 +4,8 @@ import {createStore, combineReducers,
 import cartReducer from "./redux-cart/state/cartReducer";
 import productReducer from "./redux-cart/state/productReducer";
 
+import thunk from 'redux-thunk';
+
 const rootReducer = combineReducers({
     //counter: counterReducer
     items: cartReducer,
@@ -15,7 +17,12 @@ function loggerMiddleware(store) {
     return function (nextFn) {
         return function(action) {
             console.log("Logger ", action);
-            
+
+            // thunk example
+            // if (typeof action == 'function') {
+            //     return action(store.dispatch)
+            // }
+
             // if (action.type == 'CART.EMPTY_CART')
             //     return true;
 
@@ -28,7 +35,7 @@ function loggerMiddleware(store) {
 
 const store = createStore(rootReducer, 
                             {  items: []},
-                           applyMiddleware(loggerMiddleware) 
+                           applyMiddleware(loggerMiddleware, thunk) 
                         )
 
 // store.getState().items

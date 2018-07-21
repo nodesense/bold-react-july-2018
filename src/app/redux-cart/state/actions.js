@@ -50,7 +50,7 @@ export const fetchProducts = () => {
     console.log('entering fetch products')
 
     // thunk, returns function as an action
-    return function() {
+    return function(dispatch, getState) {
         // here we go with ajax call
         // thunk shall call
         console.log("called by thunk")
@@ -58,6 +58,8 @@ export const fetchProducts = () => {
         .then (response => response.json() )
         .then (products => {
             console.log("Got products ", products);
+            let action = initProducts(products)
+            dispatch(action)
         })
     }
 
