@@ -8,9 +8,8 @@ import About from "./components/About";
 
 import NotFound from "./components/NotFound";
 
-import Cart from './cart/components/Cart';
-
-import ReduxCart from './redux-cart/containers/ReduxCart';
+//import Cart from './cart/components/Cart';
+//import ReduxCart from './redux-cart/containers/ReduxCart';
 
 import ProductList from './redux-cart/containers/ProductList';
 
@@ -18,7 +17,35 @@ import {BrowserRouter as Router,
         Switch,
         Route } from 'react-router-dom';
 
+import Loadable from 'react-loadable';
+
+
 import "./App.css";
+
+// functional component, used as placeholder
+//when lazy loaded modules delayed
+function Loading() {
+    return (
+        <div>
+            Loading ...
+        </div>
+    )
+}
+
+const Cart = Loadable({
+    // import - specification
+    // webpack, create a seperate bundle
+    loader: () => import('./cart/components/Cart'),
+    loading: Loading,
+  });
+
+
+  const ReduxCart = Loadable({
+    // import - specification
+    loader: () => import('./redux-cart/containers/ReduxCart'),
+    loading: Loading,
+  });
+
 
 export default class App extends React.Component {
     constructor() {
@@ -30,6 +57,10 @@ export default class App extends React.Component {
             appTitle: 'Product App',
             year: 2018 
         }
+    }
+
+    componentDidMount() {
+       // import('./cart/components/Cart');
     }
  
     //react keyword
@@ -59,6 +90,7 @@ export default class App extends React.Component {
                     <Route path="*" component={NotFound} />
                 </Switch>
 
+                 
                 {/* <Cart />
                 
                 <Home startValue={100} />
