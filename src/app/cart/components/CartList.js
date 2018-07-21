@@ -7,7 +7,7 @@ import CartItem from "./CartItem";
 
  //TODO: PureComponent
 
-export default class CartList extends Component {
+export default class CartList extends PureComponent {
     constructor(props) {
         super(props);
     }
@@ -16,13 +16,13 @@ export default class CartList extends Component {
 
     // called when parent render called on update cycle (nextProps)
     // called when this.setState on this component on update cycle
-    shouldComponentUpdate(nextProps, nextState) {
-        if (nextProps.items != this.props.items) {
-            return true; // calls render
-        }
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     if (nextProps.items != this.props.items) {
+    //         return true; // calls render
+    //     }
 
-        return false; // no changes in the items
-    }
+    //     return false; // no changes in the items
+    // }
     
     render() {
         console.log("CartList Render");

@@ -12,7 +12,7 @@
     Component
         Functional
         Classes
-            State
+            State  ==> redux
             Life cycle
                 componentWillMount
                 componentWillReceiveProps

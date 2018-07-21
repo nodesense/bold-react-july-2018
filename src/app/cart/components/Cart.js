@@ -10,10 +10,17 @@ export default class Cart extends Component {
     constructor(props) {
         super(props);
 
+        let items = []
+        for (let i = 1; i < 2; i++) {
+            items.push({id: i, name: 'P ' + i, price: 100, qty: 5})
+        }
+
         this.state = {
             items: [ 
-            			{id: 1, name: 'P1', price: 100, qty: 5}
-            	   ],
+                        {id: 1, name: 'P1', price: 100, qty: 5},
+                    ],
+
+            //items: items,
             amount: 0, // sum of all items price * qty
             count: 0, // sum of all items qty
             flag: true,
